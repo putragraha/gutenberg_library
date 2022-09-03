@@ -4,5 +4,5 @@ import 'package:gutenberg_library/features/book/domain/entities/book.dart';
 
 abstract class BookRepository {
 
-  Future<Either<Failure, Book>> getBooks(int pageNum);
+  Future<Either<Failure, List<Book>>> getBooks(int pageNum);
 }
