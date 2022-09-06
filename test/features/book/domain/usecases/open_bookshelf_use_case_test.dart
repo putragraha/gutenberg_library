@@ -5,7 +5,7 @@ import 'package:gutenberg_library/features/book/domain/repositories/bookshelf_re
 import 'package:gutenberg_library/features/book/domain/usecases/open_bookshelf_use_case.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../../core/book_builder.dart';
+import '../../../../core/book_factory.dart';
 
 class MockBookshelfRepository extends Mock implements BookshelfRepository {}
 
@@ -16,8 +16,8 @@ void main() {
   OpenBookshelfUseCase openBookshelfUseCase = OpenBookshelfUseCase(bookshelfRepository);
 
   List<Book> books = List.unmodifiable([
-    BookBuilder().setId(1).build(),
-    BookBuilder().setId(2).build(),
+    BookFactory.newBook(withId: 1),
+    BookFactory.newBook(withId: 2),
   ]);
 
   test('open bookshelf from bookRepository', () async {

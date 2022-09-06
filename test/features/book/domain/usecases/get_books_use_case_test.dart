@@ -5,7 +5,7 @@ import 'package:gutenberg_library/features/book/domain/repositories/book_reposit
 import 'package:gutenberg_library/features/book/domain/usecases/get_books_use_case.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../../core/book_builder.dart';
+import '../../../../core/book_factory.dart';
 
 class MockBookRepository extends Mock implements BookRepository {}
 
@@ -18,8 +18,8 @@ void main() {
   const pageNum = 1;
 
   List<Book> books = List.unmodifiable([
-    BookBuilder().setId(1).build(),
-    BookBuilder().setId(2).build(),
+    BookFactory.newBook(withId: 1),
+    BookFactory.newBook(withId: 2),
   ]);
 
   test('get books from bookRepository', () async {
