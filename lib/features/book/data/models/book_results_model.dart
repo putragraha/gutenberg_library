@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:gutenberg_library/features/book/data/models/person_model.dart';
 import 'package:gutenberg_library/features/book/data/models/format_model.dart';
 
-class BookModel extends Equatable {
+class BookResultsModel extends Equatable {
   final int id;
   final String title;
   final List<PersonModel> authors;
@@ -15,7 +15,7 @@ class BookModel extends Equatable {
   final int downloadCount;
   final bool? copyright;
 
-  const BookModel({
+  const BookResultsModel({
     required this.id,
     required this.title,
     required this.authors,
