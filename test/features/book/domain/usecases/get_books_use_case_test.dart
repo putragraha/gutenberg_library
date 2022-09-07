@@ -24,7 +24,7 @@ void main() {
 
   test('get books from bookRepository', () async {
     // arrange
-    when(() => bookRepository.getBooks(params.pageNum)).thenAnswer((_) async => Future.value(Right(books)));
+    when(() => bookRepository.getBooks(any())).thenAnswer((_) async => Future.value(Right(books)));
 
     // act
     final result = await getBooksUseCase(params);
