@@ -21,16 +21,16 @@ void main() {
 
   test('search books from repository', () async {
     // arrange
-    String keyword = "katakunci";
-    when(() => bookRepository.searchBooks(any()))
+    final params = Params(keyword: "keyword", pageNum: 1);
+    when(() => bookRepository.searchBooks(any(), any()))
         .thenAnswer((_) async => Future.value(Right(books)));
 
     // act
-    final result = await searchBooksUseCase(keyword);
+    final result = await searchBooksUseCase(params);
 
     // assert
     expect(result, Right(books));
-    verify(() => bookRepository.searchBooks(keyword)).called(1);
+    verify(() => bookRepository.searchBooks(params.keyword, params.pageNum)).called(1);
     verifyNoMoreInteractions(bookRepository);
   });
 }

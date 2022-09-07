@@ -6,5 +6,5 @@ abstract class BookRepository {
 
   Future<Either<Failure, List<Book>>> getBooks(int pageNum);
 
-  Future<Either<Failure, List<Book>>> searchBooks(String keyword);
+  Future<Either<Failure, List<Book>>> searchBooks(String keyword, int pageNum);
 }
