@@ -3,13 +3,13 @@ import 'package:gutenberg_library/features/book/domain/entities/book.dart';
 class BookFactory {
 
   static Book newBook({
-    int withId = -1,
-    String withTitle = "title -1",
-    List<String> withAuthors = const ["author -1"],
-    String withImageUrl = "imageUrl -1",
-    int withDownloadCount = -1,
-    String withEBookUrl = "eBookUrl -1",
-    List<String> withBookshelves = const["bookshelf -1"]
+    int withId = 1342,
+    String withTitle = "Pride and Prejudice",
+    List<String> withAuthors = const ["Austen, Jane"],
+    String withImageUrl = "https://www.gutenberg.org/cache/epub/1342/pg1342.cover.medium.jpg",
+    int withDownloadCount = 52612,
+    String withEBookUrl = "https://www.gutenberg.org/files/1342/1342-h/1342-h.htm",
+    List<String> withBookshelves = const ["Best Books Ever Listings", "Harvard Classics"],
   }) {
     return Book(
       id: withId,
