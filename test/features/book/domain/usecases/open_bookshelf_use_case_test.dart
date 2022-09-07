@@ -5,7 +5,7 @@ import 'package:gutenberg_library/features/book/domain/repositories/bookshelf_re
 import 'package:gutenberg_library/features/book/domain/usecases/open_bookshelf_use_case.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../../core/book_factory.dart';
+import '../../../../core/datafactory/book_factory.dart';
 
 class MockBookshelfRepository extends Mock implements BookshelfRepository {}
 
@@ -20,7 +20,7 @@ void main() {
     BookFactory.newBook(withId: 2),
   ]);
 
-  test('open bookshelf from bookRepository', () async {
+  test('open bookshelf from bookshelfRepository', () async {
     // arrange
     Params params = const Params(bookshelf: "bookshelf", pageNum: 1);
     when(() => bookshelfRepository.open(any(), any())).thenAnswer((_) async => Future.value(Right(books)));

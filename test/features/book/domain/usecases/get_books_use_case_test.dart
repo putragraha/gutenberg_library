@@ -5,7 +5,7 @@ import 'package:gutenberg_library/features/book/domain/repositories/book_reposit
 import 'package:gutenberg_library/features/book/domain/usecases/get_books_use_case.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../../core/book_factory.dart';
+import '../../../../core/datafactory/book_factory.dart';
 
 class MockBookRepository extends Mock implements BookRepository {}
 

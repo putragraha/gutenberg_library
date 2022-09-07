@@ -5,7 +5,7 @@ import 'package:gutenberg_library/features/book/domain/repositories/book_reposit
 import 'package:gutenberg_library/features/book/domain/usecases/search_books_use_case.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../../core/book_factory.dart';
+import '../../../../core/datafactory/book_factory.dart';
 
 class MockBookRepository extends Mock implements BookRepository {}
 
@@ -19,7 +19,7 @@ void main() {
     BookFactory.newBook(withId: 2),
   ]);
 
-  test('search books from repository', () async {
+  test('search books from bookRepository', () async {
     // arrange
     final params = Params(keyword: "keyword", pageNum: 1);
     when(() => bookRepository.searchBooks(any(), any()))
