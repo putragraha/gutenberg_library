@@ -15,7 +15,7 @@ void main() {
 
   GetBooksUseCase getBooksUseCase = GetBooksUseCase(bookRepository);
 
-  const pageNum = 1;
+  const Params params = Params(pageNum: 1);
 
   List<Book> books = List.unmodifiable([
     BookFactory.newBook(withId: 1),
@@ -24,14 +24,14 @@ void main() {
 
   test('get books from bookRepository', () async {
     // arrange
-    when(() => bookRepository.getBooks(pageNum)).thenAnswer((_) async => Future.value(Right(books)));
+    when(() => bookRepository.getBooks(params.pageNum)).thenAnswer((_) async => Future.value(Right(books)));
 
     // act
-    final result = await getBooksUseCase(pageNum);
+    final result = await getBooksUseCase(params);
 
     // assert
     expect(result, Right(books));
-    verify(() => bookRepository.getBooks(pageNum)).called(1);
+    verify(() => bookRepository.getBooks(params.pageNum)).called(1);
     verifyNoMoreInteractions(bookRepository);
   });
 }
