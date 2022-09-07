@@ -16,4 +16,12 @@ class PersonModel extends Equatable {
   
   @override
   List<Object?> get props => [name, birthYear, deathYear];
+
+  factory PersonModel.fromJson(Map<String, dynamic> jsonMap) {
+    return PersonModel(
+      name: jsonMap['name'],
+      birthYear: jsonMap['birth_year'],
+      deathYear: jsonMap['death_year']
+    );
+  }
 }

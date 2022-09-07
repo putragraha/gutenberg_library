@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class Format extends Equatable {
+class FormatModel extends Equatable {
 
   final String? xMobipocketEBook;
 
@@ -18,7 +18,7 @@ class Format extends Equatable {
 
   final String? imageJpeg;
 
-  const Format({
+  const FormatModel({
     this.xMobipocketEBook,
     this.ePubZip,
     this.rdfXml,
@@ -40,4 +40,17 @@ class Format extends Equatable {
     textPlain,
     imageJpeg
   ];
+
+
+  factory FormatModel.fromJson(Map<String, dynamic> jsonMap) {
+    return FormatModel(
+      xMobipocketEBook: jsonMap["application/x-mobipocket-ebook"],
+      ePubZip: jsonMap["application/epub+zip"],
+      rdfXml: jsonMap["application/rdf+xml"],
+      textHtmlUtf8: jsonMap["text/html; charset=utf-8"],
+      textPlain: jsonMap["text/plain; charset=utf-8"],
+      imageJpeg: jsonMap["image/jpeg"],
+      textHtml: jsonMap["text/html"]
+    );
+  }
 }

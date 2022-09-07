@@ -11,7 +11,7 @@ class BookResultsModel extends Equatable {
   final List<String> bookshelves;
   final List<String> languages;
   final String mediaType;
-  final Format formats;
+  final FormatModel formats;
   final int downloadCount;
   final bool? copyright;
 
@@ -28,6 +28,33 @@ class BookResultsModel extends Equatable {
     required this.downloadCount,
     this.copyright
   });
+
+  factory BookResultsModel.fromJson(Map<String, dynamic> jsonMap) {
+    final List<PersonModel> authors = List<PersonModel>.unmodifiable(
+      jsonMap['authors'].map((e) => PersonModel.fromJson(e))
+    );
+    final List<PersonModel> translators = List<PersonModel>.unmodifiable(
+      jsonMap['translators'].map((e) => PersonModel.fromJson(e))
+    );
+    final List<String> subjects = List<String>.unmodifiable(jsonMap['subjects']);
+    final List<String> bookshelves = List<String>.unmodifiable(jsonMap['bookshelves']);
+    final List<String> languages = List<String>.unmodifiable(jsonMap['languages']);
+    final FormatModel formatModel = FormatModel.fromJson(jsonMap['formats']);
+
+    return BookResultsModel(
+      id: jsonMap['id'],
+      title: jsonMap['title'],
+      authors: authors,
+      translators: translators,
+      subjects: subjects,
+      bookshelves: bookshelves,
+      languages: languages,
+      copyright: jsonMap['copyright'],
+      mediaType: jsonMap['media_type'],
+      formats: formatModel,
+      downloadCount: jsonMap['download_count']
+    );
+  }
   
   @override
   List<Object?> get props => [
