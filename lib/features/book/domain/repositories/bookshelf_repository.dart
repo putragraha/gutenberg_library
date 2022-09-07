@@ -5,5 +5,5 @@ import '../../../../core/error/failure.dart';
 
 abstract class BookshelfRepository {
 
-  Future<Either<Failure, List<Book>>> open(String bookshelf);
+  Future<Either<Failure, List<Book>>> open(String bookshelf, int pageNum);
 }

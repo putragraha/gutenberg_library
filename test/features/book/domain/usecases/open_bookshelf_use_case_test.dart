@@ -22,15 +22,15 @@ void main() {
 
   test('open bookshelf from bookRepository', () async {
     // arrange
-    String bookshelf = "bookshelf";
-    when(() => bookshelfRepository.open(bookshelf)).thenAnswer((_) async => Future.value(Right(books)));
+    Params params = const Params(bookshelf: "bookshelf", pageNum: 1);
+    when(() => bookshelfRepository.open(params.bookshelf, params.pageNum)).thenAnswer((_) async => Future.value(Right(books)));
 
     // act
-    final result = await openBookshelfUseCase(bookshelf);
+    final result = await openBookshelfUseCase(params);
 
     // assert
     expect(result, Right(books));
-    verify(() => bookshelfRepository.open(bookshelf)).called(1);
+    verify(() => bookshelfRepository.open(params.bookshelf, params.pageNum)).called(1);
     verifyNoMoreInteractions(bookshelfRepository);
   });
 }
