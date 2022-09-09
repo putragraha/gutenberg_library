@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gutenberg_library/features/book/data/models/books_model.dart';
 
-import '../../../../core/datafactory/book_model_factory.dart';
+import '../../../../core/datafactory/books_model_factory.dart';
 import '../../../../fixtures/fixture_reader.dart';
 
 void main() {
@@ -16,6 +16,6 @@ void main() {
     final result = BooksModel.fromJson(jsonMap);
 
     // assert
-    expect(result, BookModelFactory.newBooksModel());
+    expect(result, BooksModelFactory.newBooksModel());
   });
 }

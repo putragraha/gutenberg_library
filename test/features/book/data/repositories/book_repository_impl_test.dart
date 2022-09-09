@@ -11,7 +11,7 @@ import 'package:gutenberg_library/features/book/domain/entities/book.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../../../core/datafactory/book_factory.dart';
-import '../../../../core/datafactory/book_model_factory.dart';
+import '../../../../core/datafactory/books_model_factory.dart';
 
 class MockRemoteDataSource extends Mock implements BookRemoteDataSource {}
 
@@ -35,7 +35,7 @@ void main() {
 
   const pageNum = 1;
 
-  BooksModel bookModel = BookModelFactory.newBooksModel();
+  BooksModel bookModel = BooksModelFactory.newBooksModel();
 
   List<Book> books = [BookFactory.newBook()];
 

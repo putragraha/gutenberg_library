@@ -3,7 +3,7 @@ import 'package:gutenberg_library/features/book/data/models/books_model.dart';
 
 import 'book_results_model_factory.dart';
 
-class BookModelFactory {
+class BooksModelFactory {
   
   static BooksModel newBooksModel({
     int withId = 1,
