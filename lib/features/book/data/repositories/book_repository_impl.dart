@@ -1,5 +1,6 @@
 import 'package:gutenberg_library/core/error/cache_failure.dart';
 import 'package:gutenberg_library/core/error/exceptions.dart';
+import 'package:gutenberg_library/core/mapper/books_mapper.dart';
 import 'package:gutenberg_library/core/platform/network_info.dart';
 import 'package:gutenberg_library/features/book/data/datasources/book_local_data_source.dart';
 import 'package:gutenberg_library/features/book/data/datasources/book_remote_data_source.dart';
@@ -28,7 +29,7 @@ class BookRepositoryImpl extends BookRepository {
     try {
       if (await networkInfo.isConnected) {
         BooksModel booksModel = await remoteDataSource.getBooks(pageNum);
-        List<Book> books = _mapToBooks(booksModel);
+        List<Book> books = BooksMapper.map(booksModel);
 
         return Right(books);
       } else {
@@ -46,7 +47,7 @@ class BookRepositoryImpl extends BookRepository {
     try {
       if (await networkInfo.isConnected) {
         BooksModel booksModel = await remoteDataSource.searchBooks(keyword, pageNum);
-        List<Book> books = _mapToBooks(booksModel);
+        List<Book> books = BooksMapper.map(booksModel);
 
         return Right(books);  
       } else {
@@ -55,11 +56,5 @@ class BookRepositoryImpl extends BookRepository {
     } on ServerException {
       return Left(ServerFailure());  
     }
-  }
-
-  List<Book> _mapToBooks(BooksModel booksModel) {
-    return booksModel.bookResultsModels
-        .map((e) => Book.fromBooksModel(e))
-        .toList();
   }
 }
