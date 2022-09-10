@@ -22,7 +22,7 @@ void main() {
 
   test('open bookshelf from bookshelfRepository', () async {
     // arrange
-    Params params = const Params(bookshelf: "bookshelf", pageNum: 1);
+    OpenBookshelfParams params = const OpenBookshelfParams(bookshelf: "bookshelf", pageNum: 1);
     when(() => bookshelfRepository.open(any(), any())).thenAnswer((_) async => Right(books));
 
     // act

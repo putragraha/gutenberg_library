@@ -6,25 +6,25 @@ import 'package:gutenberg_library/features/book/domain/repositories/bookshelf_re
 
 import '../../../../core/error/failure.dart';
 
-class OpenBookshelfUseCase extends BaseUseCase<List<Book>, Params> {
+class OpenBookshelfUseCase extends BaseUseCase<List<Book>, OpenBookshelfParams> {
 
   final BookshelfRepository bookshelfRepository;
 
   OpenBookshelfUseCase(this.bookshelfRepository);
 
   @override
-  Future<Either<Failure, List<Book>>> call(Params params) async {
+  Future<Either<Failure, List<Book>>> call(OpenBookshelfParams params) async {
     return bookshelfRepository.open(params.bookshelf, params.pageNum);
   }
 }
 
-class Params extends Equatable {
+class OpenBookshelfParams extends Equatable {
   
   final String bookshelf;
 
   final int pageNum;
 
-  const Params({
+  const OpenBookshelfParams({
     required this.bookshelf,
     required this.pageNum
   });
