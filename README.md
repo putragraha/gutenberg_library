@@ -4,7 +4,7 @@ Application for fetching and searching books from Gutenberg Library (API source:
 Built for __B. Design and implement an app as a long term project__ situation
 
 ## Scope of Features
-- Home Screen, contains list of books 
+- Home Screen, contains list of books. Support offline data, obtained from cache containing latest success books API response.
 - Search, search for books based on selected keywords
 - Detail Screen, contains detail data of selected book
 - Bookshelf Screen, contains list of books from a specific bookshelf
