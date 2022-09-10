@@ -1,16 +1,24 @@
 # gutenberg_library
 
-A new Flutter project.
+Application for fetching and searching books from Gutenberg Library (API source: http://gutendex.com/). 
+Built for __B. Design and implement an app as a long term project__ situation
 
-## Getting Started
+## Scope of Features
+- Home Screen, contains list of books 
+- Search, search for books based on selected keywords
+- Detail Screen, contains detail data of selected book
+- Bookshelf Screen, contains list of books from a specific bookshelf
 
-This project is a starting point for a Flutter application.
+## Tech Stack
+### Production Environment
+- Equatable, to ease compare similar instance
+- Dartz, for returning object as Either, to ease return as success or fail state
+- Internet Connection Checker, to help check for device internet connectivity
+- SqlFLite, for caching fetch list of book result from API response
+### Test Environment
+- Mocktail, for stub and mock object for test
+- sqflite_common_ffi, for mocking sqlflite database interaction
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Development Details
+- Built by using Clean Architecture approach, separate data, domain, and presentation layer
+- Using TDD approach by implementing Red, Green, Refactor style
