@@ -15,7 +15,7 @@ void main() {
 
   GetBooksUseCase getBooksUseCase = GetBooksUseCase(bookRepository);
 
-  const Params params = Params(pageNum: 1);
+  const GetBooksParams params = GetBooksParams(pageNum: 1);
 
   List<Book> books = List.unmodifiable([
     BookFactory.newBook(withId: 1),
