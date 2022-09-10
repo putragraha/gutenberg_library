@@ -21,7 +21,7 @@ void main() {
 
   test('search books from bookRepository', () async {
     // arrange
-    const params = Params(keyword: "keyword", pageNum: 1);
+    const params = SearchBooksParams(keyword: "keyword", pageNum: 1);
     when(() => bookRepository.searchBooks(any(), any()))
         .thenAnswer((_) async => Right(books));
 

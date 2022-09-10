@@ -6,25 +6,25 @@ import 'package:gutenberg_library/features/book/domain/repositories/book_reposit
 
 import '../entities/book.dart';
 
-class SearchBooksUseCase extends BaseUseCase<List<Book>, Params> {
+class SearchBooksUseCase extends BaseUseCase<List<Book>, SearchBooksParams> {
 
   final BookRepository bookRepository;
 
   SearchBooksUseCase(this.bookRepository);
 
   @override
-  Future<Either<Failure, List<Book>>> call(Params params) async {
+  Future<Either<Failure, List<Book>>> call(SearchBooksParams params) async {
     return bookRepository.searchBooks(params.keyword, params.pageNum);
   }
 }
 
-class Params extends Equatable {
+class SearchBooksParams extends Equatable {
   
   final String keyword;
 
   final int pageNum;
 
-  const Params({
+  const SearchBooksParams({
     required this.keyword,
     required this.pageNum
   });
