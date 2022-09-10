@@ -44,6 +44,6 @@ class BookLocalDataSourceImpl extends BookLocalDataSource {
     final bookEntities = await db.query(BOOK_TABLE); 
     List<Book> books = List.from(bookEntities.map((element) => Book.fromEntityMap(element))); 
     
-    return Future.value(books);
+    return books;
   }
 }

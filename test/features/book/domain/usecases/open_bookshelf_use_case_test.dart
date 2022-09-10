@@ -23,7 +23,7 @@ void main() {
   test('open bookshelf from bookshelfRepository', () async {
     // arrange
     Params params = const Params(bookshelf: "bookshelf", pageNum: 1);
-    when(() => bookshelfRepository.open(any(), any())).thenAnswer((_) async => Future.value(Right(books)));
+    when(() => bookshelfRepository.open(any(), any())).thenAnswer((_) async => Right(books));
 
     // act
     final result = await openBookshelfUseCase(params);

@@ -23,7 +23,7 @@ void main() {
     // arrange
     const params = Params(keyword: "keyword", pageNum: 1);
     when(() => bookRepository.searchBooks(any(), any()))
-        .thenAnswer((_) async => Future.value(Right(books)));
+        .thenAnswer((_) async => Right(books));
 
     // act
     final result = await searchBooksUseCase(params);
