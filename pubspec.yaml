@@ -40,11 +40,13 @@ dependencies:
   equatable: ^2.0.0
   dartz: ^0.10.1
   internet_connection_checker: ^0.0.1+4
+  sqflite: ^2.0.3+1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   mocktail: ^0.3.0
+  sqflite_common_ffi: ^2.1.1+1
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
