@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:gutenberg_library/features/book/data/datasources/book_local_data_source_impl.dart';
 
 import '../../data/models/book_results_model.dart';
 
@@ -21,9 +22,6 @@ class Book extends Equatable {
     this.imageUrl,
     this.eBookUrl,  
   });
-  
-  @override
-  List<Object?> get props => [id, title, authors, imageUrl, downloadCount, eBookUrl, bookshelves];
 
   factory Book.fromBooksModel(BookResultsModel bookResultsModel) {
     return Book(
@@ -35,5 +33,32 @@ class Book extends Equatable {
       imageUrl: bookResultsModel.formats.imageJpeg, 
       eBookUrl: bookResultsModel.formats.textHtmlUtf8, 
     );
+  }
+
+  factory Book.fromEntityMap(Map<String, Object?> entity) {
+    return Book(
+      id: entity[BookLocalDataSourceImpl.ID_FIELD] as int, 
+      title: entity[BookLocalDataSourceImpl.TITLE_FIELD] as String, 
+      authors: (entity[BookLocalDataSourceImpl.AUTHORS_FIELD] as String).split("|"), 
+      downloadCount: entity[BookLocalDataSourceImpl.DOWNLOAD_COUNT_FIELD] as int, 
+      bookshelves: (entity[BookLocalDataSourceImpl.BOOKSHELVES_FIELD] as String).split("|"),
+      imageUrl: entity[BookLocalDataSourceImpl.IMAGE_URL_FIELD] as String,
+      eBookUrl: entity[BookLocalDataSourceImpl.E_BOOK_URL_FIELD] as String,
+    );
+  }
+  
+  @override
+  List<Object?> get props => [id, title, authors, imageUrl, downloadCount, eBookUrl, bookshelves];
+
+  Map<String, Object?> toEntityMap() {
+    return {
+      BookLocalDataSourceImpl.ID_FIELD: id,
+      BookLocalDataSourceImpl.TITLE_FIELD: title,
+      BookLocalDataSourceImpl.AUTHORS_FIELD: authors.join("|"),
+      BookLocalDataSourceImpl.DOWNLOAD_COUNT_FIELD: downloadCount,
+      BookLocalDataSourceImpl.BOOKSHELVES_FIELD: bookshelves.join("|"),
+      BookLocalDataSourceImpl.IMAGE_URL_FIELD: imageUrl,
+      BookLocalDataSourceImpl.E_BOOK_URL_FIELD: eBookUrl,
+    };
   }
 }
