@@ -15,6 +15,7 @@ Built for __B. Design and implement an app as a long term project__ situation
 - Dartz, for returning object as Either, to ease return as success or fail state
 - Internet Connection Checker, to help check for device internet connectivity
 - SqlFLite, for caching fetch list of book result from API response
+- http, for REST Client
 ### Test Environment
 - Mocktail, for stub and mock object for test
 - sqflite_common_ffi, for mocking sqlflite database interaction
