@@ -29,7 +29,7 @@ void main() {
   setUp(() {
     mockClient = MockHttpClient();
     dataSource = BookshelfRemoteDataSourceImpl(client: mockClient);
-    url = Uri.parse("http://gutendex.com//books?topic=$encodedBookshelf&page=$pageNum");
+    url = Uri.parse("http://gutendex.com/books?topic=$encodedBookshelf&page=$pageNum");
   });
 
     test('''

@@ -65,7 +65,7 @@ void main() {
     const encodedKeyword = "dickens%20great"; 
 
     setUp(() {
-      url = Uri.parse("http://gutendex.com//books?search=$encodedKeyword&page=$pageNum");
+      url = Uri.parse("http://gutendex.com/books?search=$encodedKeyword&page=$pageNum");
     });
 
     test('''
