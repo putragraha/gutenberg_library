@@ -15,7 +15,7 @@ import 'package:gutenberg_library/features/book/domain/usecases/get_books_use_ca
 import 'package:gutenberg_library/features/book/domain/usecases/open_bookshelf_use_case.dart';
 import 'package:gutenberg_library/features/book/domain/usecases/search_books_use_case.dart';
 import 'package:gutenberg_library/features/book/presentation/bloc/books_bloc.dart';
-import 'package:gutenberg_library/features/book/presentation/bloc/bookshelf_bloc.dart';
+import 'package:gutenberg_library/features/book/presentation/bloc/book_details_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:sqflite/sqflite.dart';
@@ -30,7 +30,7 @@ Future<void> init() async {
     getBooksUseCase: sl(), 
     searchBooksUseCase: sl()
   ));
-  sl.registerFactory(() => BookshelfBloc(openBookshelfUseCase: sl()));
+  sl.registerFactory(() => BookDetailsBloc(openBookshelfUseCase: sl()));
 
   // Usecase
   sl.registerLazySingleton(() => GetBooksUseCase(sl()));

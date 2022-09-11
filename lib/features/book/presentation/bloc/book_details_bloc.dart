@@ -4,15 +4,15 @@ import 'package:gutenberg_library/features/book/domain/usecases/open_bookshelf_u
 
 import '../../domain/entities/book.dart';
 
-part 'bookshelf_event.dart';
-part 'bookshelf_state.dart';
+part 'book_details_event.dart';
+part 'book_details_state.dart';
 
-class BookshelfBloc extends Bloc<BookshelfEvent, BookshelfState> {
+class BookDetailsBloc extends Bloc<BookDetailsEvent, BookDetailsState> {
   final OpenBookshelfUseCase openBookshelfUseCase;
 
   int pageNum = 1;
 
-  BookshelfBloc({required this.openBookshelfUseCase})
+  BookDetailsBloc({required this.openBookshelfUseCase})
       : super(BookshelfInitial()) {
 
     on<LoadBookshelf>((event, emit) async {

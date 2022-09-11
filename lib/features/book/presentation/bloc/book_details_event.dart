@@ -1,13 +1,13 @@
-part of 'bookshelf_bloc.dart';
+part of 'book_details_bloc.dart';
 
-abstract class BookshelfEvent extends Equatable {
-  const BookshelfEvent();
+abstract class BookDetailsEvent extends Equatable {
+  const BookDetailsEvent();
 
   @override
   List<Object> get props => [];
 }
 
-class LoadBookshelf extends BookshelfEvent {
+class LoadBookshelf extends BookDetailsEvent {
 
   final String bookshelf;
 
