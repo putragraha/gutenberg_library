@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:gutenberg_library/features/book/presentation/bloc/book_details_bloc.dart';
 
 import '../../domain/entities/book.dart';
 import '../pages/book_details_page.dart';
 
 class BookSimilar extends StatelessWidget {
-  final Book book;
+  final SuccessLoadBookshelf state;
 
-  const BookSimilar({super.key, required this.book});
+  const BookSimilar({super.key, required this.state});
 
   @override
   Widget build(BuildContext context) {
@@ -24,25 +25,29 @@ class BookSimilar extends StatelessWidget {
           height: 180,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 20,
-            itemBuilder: (context, index) => GestureDetector(
-              onTap: () => _openSimilarBook(context),
-              child: Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: Image.network(
-                  book.imageUrl!,
-                  height: 150,
-                  width: 100,
+            itemCount: state.books.length,
+            itemBuilder: (context, index) {
+              final book = state.books[index];
+
+              return GestureDetector(
+                onTap: () => _openSimilarBook(context, book),
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Image.network(
+                    book.imageUrl!,
+                    height: 150,
+                    width: 100,
+                  ),
                 ),
-              ),
-            ),
+              );
+            },
           ),
         ),
       ],
     );
   }
 
-  void _openSimilarBook(BuildContext context) {
+  void _openSimilarBook(BuildContext context, Book book) {
     Navigator.push(
       context,
       MaterialPageRoute(

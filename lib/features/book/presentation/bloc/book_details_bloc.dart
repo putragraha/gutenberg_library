@@ -13,16 +13,21 @@ class BookDetailsBloc extends Bloc<BookDetailsEvent, BookDetailsState> {
   int pageNum = 1;
 
   BookDetailsBloc({required this.openBookshelfUseCase})
-      : super(BookshelfInitial()) {
+      : super(LoadingBookshelf()) {
 
     on<LoadBookshelf>((event, emit) async {
+      if (event.bookshelf.isEmpty) {
+        emit(FailedLoadBookshelf());
+        return;
+      }
+
       emit(LoadingBookshelf());
       final result = await openBookshelfUseCase(
           OpenBookshelfParams(bookshelf: event.bookshelf, pageNum: pageNum));
 
       result.fold(
-        (failure) => emit(LoadBookshelfFailed()), 
-        (books) => emit(LoadBookshelfSuccess(books))
+        (failure) => emit(FailedLoadBookshelf()), 
+        (books) => emit(SuccessLoadBookshelf(books))
       );
     });
   }

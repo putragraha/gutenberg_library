@@ -18,8 +18,7 @@ class GutenbergLibrary extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => sl<BooksBloc>()..add(GetAllBooks())),
+        BlocProvider(create: (context) => sl<BooksBloc>()..add(GetAllBooks())),
       ],
       child: MaterialApp(
         title: 'Gutenberg Library',
