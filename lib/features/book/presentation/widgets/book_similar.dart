@@ -29,17 +29,21 @@ class BookSimilar extends StatelessWidget {
             itemBuilder: (context, index) {
               final book = state.books[index];
 
-              return GestureDetector(
-                onTap: () => _openSimilarBook(context, book),
-                child: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Image.network(
-                    book.imageUrl!,
-                    height: 150,
-                    width: 100,
+              if (book.imageUrl != null) {
+                return GestureDetector(
+                  onTap: () => _openSimilarBook(context, book),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Image.network(
+                      book.imageUrl!,
+                      height: 150,
+                      width: 100,
+                    ),
                   ),
-                ),
-              );
+                );
+              } else {
+                return const SizedBox.shrink();
+              }
             },
           ),
         ),

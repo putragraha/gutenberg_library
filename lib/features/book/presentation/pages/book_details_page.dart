@@ -20,6 +20,7 @@ class BookDetailsPage extends StatelessWidget {
         book.bookshelves.isNotEmpty ? book.bookshelves.first : "";
     final windowSize = MediaQuery.of(context).size;
     final author = book.authors.isNotEmpty ? book.authors.first : "";
+    final bookImageUrl = book.imageUrl ?? "";
 
     return Scaffold(
       appBar: AppBar(
@@ -48,7 +49,7 @@ class BookDetailsPage extends StatelessWidget {
                         height: windowSize.height / 3,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                              image: NetworkImage(book.imageUrl!),
+                              image: NetworkImage(bookImageUrl),
                               fit: BoxFit.cover),
                         ),
                         child: BackdropFilter(
@@ -60,7 +61,7 @@ class BookDetailsPage extends StatelessWidget {
                         ),
                       ),
                       Image.network(
-                        book.imageUrl!,
+                        bookImageUrl,
                         height: 180,
                         width: 120,
                       ),
