@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:gutenberg_library/features/book/domain/entities/book.dart';
+import 'package:gutenberg_library/features/book/presentation/widgets/book_similar.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class BookDetailsPage extends StatelessWidget {
@@ -17,13 +18,13 @@ class BookDetailsPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.chevron_left),
+            icon: const Icon(Icons.chevron_left),
             onPressed: () => Navigator.of(context).pop(),
           ),
           title: const Text("Book Details"),
           centerTitle: true,
         ),
-        body: Container(
+        body: SizedBox(
           width: windowSize.width,
           height: windowSize.height,
           child: Column(
@@ -41,9 +42,9 @@ class BookDetailsPage extends StatelessWidget {
                     ),
                     child: BackdropFilter(
                       filter: ImageFilter.blur(sigmaX: 4.0, sigmaY: 4.0),
-                      child: new Container(
-                        decoration: new BoxDecoration(
-                            color: Colors.white.withOpacity(0.5)),
+                      child: Container(
+                        decoration:
+                            BoxDecoration(color: Colors.white.withOpacity(0.5)),
                       ),
                     ),
                   ),
@@ -56,66 +57,42 @@ class BookDetailsPage extends StatelessWidget {
               ),
               const SizedBox(height: 36),
               Center(
-                child: Column(children: [
-                  Text(
-                    book.title,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-                  ),
-                  Text(author, style: TextStyle(fontSize: 20)),
-                  const SizedBox(height: 12),
-                  Text("Download: ${book.downloadCount}"),
-                  GestureDetector(
-                    onTap: () async {
-                      if (book.eBookUrl != null &&
-                          await canLaunchUrlString(book.eBookUrl!)) {
-                        await launchUrlString(book.eBookUrl!);
-                      }
-                    },
-                    child: const Text(
-                      "Read here",
-                      style: TextStyle(color: Colors.blue),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: Column(children: [
+                    Text(
+                      overflow: TextOverflow.ellipsis,
+                      book.title,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 20),
                     ),
-                  ),
-                ]),
-              ),
-              const SizedBox(height: 36),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Text(
-                  "Similar Books",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  textAlign: TextAlign.left,
-                ),
-              ),
-              Container(
-                height: 180,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 20,
-                  itemBuilder: (context, index) => GestureDetector(
-                    onTap: () => _openSimilarBook(context),
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Image.network(
-                        book.imageUrl!,
-                        height: 150,
-                        width: 100,
+                    Text(
+                      author,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                    const SizedBox(height: 20),
+                    Text("Download: ${book.downloadCount}"),
+                    const SizedBox(height: 4),
+                    GestureDetector(
+                      onTap: () async {
+                        if (book.eBookUrl != null &&
+                            await canLaunchUrlString(book.eBookUrl!)) {
+                          await launchUrlString(book.eBookUrl!);
+                        }
+                      },
+                      child: const Text(
+                        "Read here",
+                        style: TextStyle(color: Colors.blue),
                       ),
                     ),
-                  ),
+                  ]),
                 ),
               ),
+              const SizedBox(height: 36),
+              BookSimilar(book: book),
             ],
           ),
         ));
-  }
-
-  void _openSimilarBook(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => BookDetailsPage(book: book),
-      ),
-    );
   }
 }
