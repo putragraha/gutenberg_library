@@ -12,8 +12,11 @@ class BooksPage extends StatefulWidget {
 
 class _BooksPage extends State<BooksPage> {
 
+  final searchController = TextEditingController();
+  
   @override
   Widget build(BuildContext context) {
+
     final windowSize = MediaQuery.of(context).size;
 
     return BlocBuilder<BooksBloc, BooksState>(
@@ -31,14 +34,16 @@ class _BooksPage extends State<BooksPage> {
                   Row(
                     // ignore: prefer_const_literals_to_create_immutables
                     children: [
-                      const Icon(Icons.search),
-                      // ignore: prefer_const_constructors
+                      GestureDetector(
+                        child: const Icon(Icons.search),
+                        onTap: () => context.read<BooksBloc>().add(SearchBook(searchController.text)),
+                      ),
                       Expanded(
-                          // ignore: prefer_const_constructors
                           child: Padding(
                         padding: const EdgeInsets.only(left: 16.0),
-                        child: const TextField(
-                          decoration: InputDecoration(
+                        child: TextField(
+                          controller: searchController,
+                          decoration: const InputDecoration(
                             border: UnderlineInputBorder(),
                             hintText: 'Search',
                           ),
@@ -57,5 +62,11 @@ class _BooksPage extends State<BooksPage> {
             ));
       },
     );
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
   }
 }
