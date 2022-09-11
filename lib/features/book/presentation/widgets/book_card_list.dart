@@ -24,7 +24,9 @@ class BookCardList extends StatelessWidget {
         },
       );
     } else if (state is LoadingBooks) {
-      return const CircularProgressIndicator();
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
     } else if (state is EmptyBooks) {
       return const Text("No books found...");
     } else {
