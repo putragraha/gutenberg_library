@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gutenberg_library/features/book/presentation/bloc/books_bloc.dart';
 import 'package:gutenberg_library/features/book/presentation/pages/books_page.dart';
 import 'injection_container.dart' as di;
-import 'injection_container.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,17 +13,12 @@ class GutenbergLibrary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => sl<BooksBloc>()..add(GetAllBooks())),
-      ],
-      child: MaterialApp(
-        title: 'Gutenberg Library',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const BooksPage(),
+    return MaterialApp(
+      title: 'Gutenberg Library',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
+      home: const BooksPage(),
     );
   }
 }

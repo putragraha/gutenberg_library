@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gutenberg_library/features/book/presentation/bloc/books_bloc.dart';
 import 'package:gutenberg_library/features/book/presentation/widgets/book_card_list.dart';
 
+import '../../../../injection_container.dart';
+
 class BooksPage extends StatefulWidget {
   const BooksPage({super.key});
 
@@ -11,22 +13,22 @@ class BooksPage extends StatefulWidget {
 }
 
 class _BooksPage extends State<BooksPage> {
-
   final searchController = TextEditingController();
-  
+
   @override
   Widget build(BuildContext context) {
-
     final windowSize = MediaQuery.of(context).size;
 
-    return BlocBuilder<BooksBloc, BooksState>(
-      builder: (context, state) {
-        return Scaffold(
-            appBar: AppBar(
-              title: const Text("Books"),
-              centerTitle: true,
-            ),
-            body: Container(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Books"),
+        centerTitle: true,
+      ),
+      body: BlocProvider(
+        create: (context) => sl<BooksBloc>()..add(GetAllBooks()),
+        child: BlocBuilder<BooksBloc, BooksState>(
+          builder: (context, state) {
+            return Container(
               height: windowSize.height,
               padding: const EdgeInsets.all(20.0),
               child: Column(
@@ -36,7 +38,9 @@ class _BooksPage extends State<BooksPage> {
                     children: [
                       GestureDetector(
                         child: const Icon(Icons.search),
-                        onTap: () => context.read<BooksBloc>().add(SearchBook(searchController.text)),
+                        onTap: () => context
+                            .read<BooksBloc>()
+                            .add(SearchBook(searchController.text)),
                       ),
                       Expanded(
                           child: Padding(
@@ -59,8 +63,10 @@ class _BooksPage extends State<BooksPage> {
                   ),
                 ],
               ),
-            ));
-      },
+            );
+          },
+        ),
+      ),
     );
   }
 
