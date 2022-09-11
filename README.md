@@ -16,6 +16,9 @@ Built for __B. Design and implement an app as a long term project__ situation
 - Internet Connection Checker, to help check for device internet connectivity
 - SqlFLite, for caching fetch list of book result from API response
 - http, for REST Client
+- BLoC, for handling state management and presentation logic in Widget
+- get it, for dependency injection
+- url launcher, for handling open link
 ### Test Environment
 - Mocktail, for stub and mock object for test
 - sqflite_common_ffi, for mocking sqlflite database interaction
