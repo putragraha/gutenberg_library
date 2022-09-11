@@ -12,6 +12,7 @@ class BookDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final windowSize = MediaQuery.of(context).size;
+    final author = book.authors.isNotEmpty ? book.authors.first : "";
 
     return Scaffold(
         appBar: AppBar(
@@ -60,7 +61,7 @@ class BookDetailsPage extends StatelessWidget {
                     book.title,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                   ),
-                  Text(book.authors.first, style: TextStyle(fontSize: 20)),
+                  Text(author, style: TextStyle(fontSize: 20)),
                   const SizedBox(height: 12),
                   Text("Download: ${book.downloadCount}"),
                   GestureDetector(

@@ -9,38 +9,39 @@ part 'books_event.dart';
 part 'books_state.dart';
 
 class BooksBloc extends Bloc<BooksEvent, BooksState> {
+
   final GetBooksUseCase getBooksUseCase;
 
   final SearchBooksUseCase searchBooksUseCase;
 
-  int pageNum = 1;
+  final pageNum = 1;
 
   BooksBloc({required this.getBooksUseCase, required this.searchBooksUseCase})
-      : super(BooksInitial()) {
+      : super(LoadingBooks()) {
         
     on<GetAllBooks>((event, emit) async {
-      emit(LoadGetAllBooks());
+      emit(LoadingBooks());
       final result = await getBooksUseCase(GetBooksParams(pageNum: pageNum));
 
-      result.fold((failure) => emit(GetAllBooksFailed()), (books) {
+      result.fold((failure) => emit(FailedGetBooks()), (books) {
         if (books.isEmpty) {
           emit(EmptyBooks());
         } else {
-          emit(GetAllBooksSuccess(books));
+          emit(SuccessGetBooks(books));
         }
       });
     });
 
     on<SearchBook>((event, emit) async {
-      emit(LoadGetAllBooks());
+      emit(LoadingBooks());
       final result = await searchBooksUseCase(
           SearchBooksParams(keyword: event.keyword, pageNum: pageNum));
 
-      result.fold((failure) => emit(GetAllBooksFailed()), (books) {
+      result.fold((failure) => emit(FailedGetBooks()), (books) {
         if (books.isEmpty) {
           emit(EmptyBooks());
         } else {
-          emit(GetAllBooksSuccess(books));
+          emit(SuccessGetBooks(books));
         }
       });
     });

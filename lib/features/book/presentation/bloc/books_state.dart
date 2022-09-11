@@ -7,20 +7,18 @@ abstract class BooksState extends Equatable {
   List<Object> get props => [];
 }
 
-class BooksInitial extends BooksState {}
-
-class GetAllBooksSuccess extends BooksState {
+class SuccessGetBooks extends BooksState {
 
   final List<Book> books;
 
-  const GetAllBooksSuccess(this.books);
+  const SuccessGetBooks(this.books);
 
   @override
   List<Object> get props => [books];
 }
 
-class LoadGetAllBooks extends BooksState {}
+class LoadingBooks extends BooksState {}
 
 class EmptyBooks extends BooksState {}
 
-class GetAllBooksFailed extends BooksState {}
+class FailedGetBooks extends BooksState {}
