@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gutenberg_library/features/book/domain/entities/book.dart';
-import 'package:gutenberg_library/features/book/presentation/widgets/book_widget.dart';
+import 'package:gutenberg_library/features/book/presentation/widgets/book_card.dart';
 
 class BooksPage extends StatefulWidget {
   const BooksPage({super.key});

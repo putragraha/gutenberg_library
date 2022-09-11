@@ -91,12 +91,15 @@ class BookDetailsPage extends StatelessWidget {
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: 20,
-                  itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Image.network(
-                      book.imageUrl!,
-                      height: 150,
-                      width: 100,
+                  itemBuilder: (context, index) => GestureDetector(
+                    onTap: () => _openSimilarBook(context),
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Image.network(
+                        book.imageUrl!,
+                        height: 150,
+                        width: 100,
+                      ),
                     ),
                   ),
                 ),
@@ -104,5 +107,14 @@ class BookDetailsPage extends StatelessWidget {
             ],
           ),
         ));
+  }
+
+  void _openSimilarBook(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BookDetailsPage(book: book),
+      ),
+    );
   }
 }

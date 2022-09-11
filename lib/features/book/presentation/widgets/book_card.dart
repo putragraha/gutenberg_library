@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gutenberg_library/features/book/presentation/pages/book_details_page.dart';
 
 import '../../domain/entities/book.dart';
